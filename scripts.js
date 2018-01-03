@@ -7,7 +7,6 @@ $('li[id^="issue"] a[href*="/issues/"]').not('.muted-link').each(function(i,link
 
         var gallery = $(container).find('.issue-images__gallery')
         $(images).each(function(i,img){
-          console.log(img)
           appendImageData(img,i,gallery)
         })
       }
@@ -15,13 +14,10 @@ $('li[id^="issue"] a[href*="/issues/"]').not('.muted-link').each(function(i,link
   })
 })
 
-var images;
-var index = 0;
-
 function findImages(html){
   return new Promise(function(resolve){
     var $html = $(html)
-    images = $html.find('.comment-body img')
+    var images = $html.find('.comment-body img')
     if ( images.length){
       resolve(images)
     }
@@ -33,7 +29,7 @@ function appendImageHtml(container){
   $(container).append(`
     <div class="issue-images">
       <button class="issue-images__toggle"></button>
-      <div class="issue-images__gallery">
+      <div class="issue-images__gallery" data-images="[]">
         <div class="gallery__nav gallery__nav--prev">Prev</div>
         <div class="gallery__nav gallery__nav--next">Next</div>
         <img class="gallery__current-image">
@@ -43,7 +39,12 @@ function appendImageHtml(container){
 }
 
 function appendImageData(img,i,gallery){
-  $(gallery).data('img-' + i, img.src)
+  gallery = gallery[0]
+  console.log(gallery.dataset.images)
+  galleryImages = JSON.parse(gallery.dataset.images)
+  galleryImages.push(img.src)
+  console.log(galleryImages)
+  gallery.dataset.images = JSON.stringify(galleryImages)
 }
 
 
@@ -54,7 +55,9 @@ $('body').on('click','.issue-images__toggle',function(){
   $(this).parent('.issue-images').toggleClass('issue-images--open')
 
   var $gallery = $(this).next('.issue-images__gallery')
-  $gallery.find('.gallery__current-image').attr('src',$gallery.data('img-0'))
+
+  var firstImage = JSON.parse($gallery[0].dataset.images)[0]
+  $gallery.find('.gallery__current-image').attr('src',firstImage)
 })
 
 $('body').keydown(function(e){
