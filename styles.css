@@ -1,0 +1,35 @@
+.issue-images__toggle {
+  margin: 5px 0 0;
+  height: 25px;
+  width: 25px;
+}
+
+.issue-images__toggle::after {
+  content: '+';
+}
+
+.issue-images--open .issue-images__toggle::after {
+  content: '-';
+}
+
+.issue-images__gallery {
+  display: none;
+}
+
+.issue-images--open .issue-images__gallery {
+  display: inline;
+}
+
+.gallery__nav {
+  display: inline-block;
+}
+
+.gallery__nav:hover {
+  text-decoration: underline;
+}
+
+.gallery__current-image {
+  width: 100%;
+  border: 1px solid lightgrey;
+  margin: 15px 0;
+}

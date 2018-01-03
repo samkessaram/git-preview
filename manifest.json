@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "GitPreview",
+  "version": "0.1",
+  "description": "Quickly preview images associated with an issue on GitHub without having to navigate to that issue's page.",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts":[
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["jquery.js", "scripts.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ]
+} 
