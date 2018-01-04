@@ -1,36 +1,58 @@
+// Run at first load
+setupIssuePreview()
+
+// Run on PJAX load as well
+document.addEventListener('pjax:success',function(e){
+  setupIssuePreview()
+})
+
 // Access background-image
 var imgURL = chrome.extension.getURL("camera.png");
 
-$('li[id^="issue"] a[href*="/issues/"]').not('.muted-link').each(function(i,link){
-  var html = $.get(link.href).then(function(html){
-    findImages(html).then(function(images){
-      if (images) {
-        var container = $(link).parent('div')
-        appendImageHtml(container)
+function setupIssuePreview(){
 
-        $container = $(container)
+  // Each issue link
+  $('li[id^="issue"] a[href*="/issues/"]').not('.muted-link').each(function(i,link){
 
-        $container.attr('id','issue-image-container')
+    // Get the html for the linked page
+    var html = $.get(link.href).then(function(html){
 
-        $container.find('.issue-images__toggle').css('background-image','url(' + imgURL + ')')
+      // Search for images on that page
+      findImages(html).then(function(images){
+        if (images) {
+          var container = $(link).parent('div')
+          appendImageHtml(container)
 
-        var gallery = $container.find('.issue-images__gallery')
+          $container = $(container)
 
-        $(images).each(function(i,img){
-          appendImageData(img,i,gallery)
-        })
+          // Need to attach this ID to over-ride GitHub !important styling
+          $container.attr('id','issue-image-container')
 
-        var imageCountDisplay = $container.find('.image-total')
-        imageCountDisplay[0].innerHTML = images.length
-      }
+          // Need to change the background image here, because the url is dynamic
+          $container.find('.issue-images__toggle').css('background-image','url(' + imgURL + ')')
+
+          // We'll attach data attributes to the parent div of the images, so we need to save it and pass it in a fn for each found image
+          var gallery = $container.find('.issue-images__gallery')
+
+          $(images).each(function(i,img){
+            appendImageData(img,i,gallery)
+          })
+
+          // Display the count so user can keep track of what image they're on.
+          var imageCountDisplay = $container.find('.image-total')
+          imageCountDisplay[0].innerHTML = images.length
+        }
+      })
     })
   })
-})
+}
 
 
 function findImages(html){
   return new Promise(function(resolve){
     var $html = $(html)
+
+    // Only get images in comments
     var images = $html.find('.comment-body img')
     if ( images.length){
       resolve(images)
@@ -73,6 +95,7 @@ $('body').on('click','.issue-images__toggle',function(){
 
   var $gallery = $(this).next('.issue-images__gallery')
 
+  // Default to first image when user opens gallery
   var firstImage = JSON.parse($gallery[0].dataset.images)[0]
   $gallery.find('.gallery__current-image').attr('src',firstImage)
 })
