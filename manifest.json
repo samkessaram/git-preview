@@ -9,8 +9,9 @@
     "persistent": false
   },
   "icons": {
-    "128": "photo-camera.png"
+    "128": "camera.png"
   },
+  "web_accessible_resources": ["camera.png"],
   "content_scripts":[
     {
       "matches": ["https://github.com/*"],

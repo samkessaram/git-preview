@@ -1,3 +1,6 @@
+// Access background-image
+var imgURL = chrome.extension.getURL("camera.png");
+
 $('li[id^="issue"] a[href*="/issues/"]').not('.muted-link').each(function(i,link){
   var html = $.get(link.href).then(function(html){
     findImages(html).then(function(images){
@@ -5,18 +8,25 @@ $('li[id^="issue"] a[href*="/issues/"]').not('.muted-link').each(function(i,link
         var container = $(link).parent('div')
         appendImageHtml(container)
 
-        var gallery = $(container).find('.issue-images__gallery')
+        $container = $(container)
+
+        $container.attr('id','issue-image-container')
+
+        $container.find('.issue-images__toggle').css('background-image','url(' + imgURL + ')')
+
+        var gallery = $container.find('.issue-images__gallery')
 
         $(images).each(function(i,img){
           appendImageData(img,i,gallery)
         })
 
-        var imageCountDisplay = $(container).find('.image-total')
+        var imageCountDisplay = $container.find('.image-total')
         imageCountDisplay[0].innerHTML = images.length
       }
     })
   })
 })
+
 
 function findImages(html){
   return new Promise(function(resolve){
@@ -35,10 +45,10 @@ function appendImageHtml(container){
       <button class="issue-images__toggle"></button>
       <div class="issue-images__gallery" data-images="[]">
         <div class="gallery__nav">
-          <div class="gallery__nav__element gallery__nav__element--link gallery__nav__prev">Prev</div>
-          <div class="gallery__nav__element gallery__nav__element--link gallery__nav__next">Next</div>
+          <div class="gallery__nav__element gallery__nav__element--link gallery__nav__prev">« Prev&nbsp;</div>
+          <div class="gallery__nav__element gallery__nav__element--link gallery__nav__next">&nbsp;Next »</div>
           <div class="gallery__nav__element gallery__nav__count">
-            &nbsp;&nbsp;//&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <span class="image-index">1</span>
             of
             <span class="image-total"></span>
