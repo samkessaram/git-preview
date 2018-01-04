@@ -8,4 +8,4 @@ Open the [Chrome Web Store](https://chrome.google.com/webstore/detail/github-ima
 Navigate to any GitHub issue list-view, and a camera icon will be added to each issue that contains an image in the comments. Click the camera icon to open a gallery and view the image(s).
 
 ## Credits
-Icon made by [Daniel Bruce](https://www.flaticon.com/authors/daniel-bruce)from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+Icon made by [Daniel Bruce](https://www.flaticon.com/authors/daniel-bruce) from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
