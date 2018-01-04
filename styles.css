@@ -5,6 +5,11 @@
   position: relative;
 }
 
+#issue-image-container a {
+  position: relative;
+  z-index: 2;
+}
+
 .issue-images {
   top: -40px;
   left: -40px;
