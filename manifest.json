@@ -2,12 +2,8 @@
   "manifest_version": 2,
   "name": "Github Image Preview",
   "author": "Sam Kessaram",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Preview issue images on GitHub. https://github.com/samkessaram/git-preview",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "icons": {
     "128": "camera.png"
   },
