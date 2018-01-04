@@ -3,7 +3,7 @@
   "name": "GitPreview",
   "author": "Sam Kessaram",
   "version": "0.1",
-  "description": "Quickly preview images associated with an issue on GitHub without having to navigate to that issue's page. https://github.com/samkessaram/git-preview",
+  "description": "Preview issue images on GitHub. https://github.com/samkessaram/git-preview",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
