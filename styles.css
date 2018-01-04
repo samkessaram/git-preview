@@ -20,11 +20,11 @@
   display: inline;
 }
 
-.gallery__nav {
+.gallery__nav__element {
   display: inline-block;
 }
 
-.gallery__nav:hover {
+.gallery__nav__element--link:hover {
   text-decoration: underline;
 }
 
