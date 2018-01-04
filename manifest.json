@@ -11,7 +11,7 @@
   "content_scripts":[
     {
       "matches": ["https://github.com/*"],
-      "js": ["jquery.js", "scripts.js"],
+      "js": ["jquery.min.js", "scripts.js"],
       "css": ["styles.css"],
       "run_at": "document_end"
     }
