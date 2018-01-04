@@ -43,6 +43,7 @@ function appendImageHtml(container){
             of
             <span class="image-total"></span>
           </div>
+        </div>
         <img class="gallery__current-image">
       </div>
     </div>

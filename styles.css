@@ -20,6 +20,11 @@
   display: inline;
 }
 
+.gallery__nav {
+  display: inline-block;
+  margin-left: 10px;
+}
+
 .gallery__nav__element {
   display: inline-block;
 }
