@@ -65,3 +65,42 @@ $('body').on('click','.issue-images__toggle',function(){
   var firstImage = JSON.parse($gallery[0].dataset.images)[0]
   $gallery.find('.gallery__current-image').attr('src',firstImage)
 })
+
+
+$('body').on('click','.gallery__nav__next',function(){
+  var $container = $(this).parents('.issue-images')
+  var images = JSON.parse( $container.find('.issue-images__gallery')[0].dataset.images )
+
+  // We display the current index + 1 to the user, 
+  // so we can use this as the zero-based index of the next image in the array.
+  var nextIndex = parseInt( $container.find('.image-index').text() )
+  var numberOfImages = parseInt( $container.find('.image-total').text() )
+  var image
+
+  if ( nextIndex === numberOfImages ){
+    nextIndex = 0
+  }
+  
+  image = images[nextIndex]
+  $container.find('.gallery__current-image').attr('src',image)
+  $container.find('.image-index').html(nextIndex + 1)
+})
+
+
+$('body').on('click','.gallery__nav__prev',function(){
+  var $container = $(this).parents('.issue-images')
+  var images = JSON.parse( $container.find('.issue-images__gallery')[0].dataset.images )
+
+  // We display the current index + 1 to the user, 
+  // so the previous image is as this value, minus 2
+  var nextIndex = parseInt( $container.find('.image-index').text() ) - 2
+  var lastIndex = parseInt( $container.find('.image-total').text() ) - 1
+
+  if ( nextIndex < 0 ){
+    nextIndex = lastIndex
+  }
+  
+  var image = images[nextIndex]
+  $container.find('.gallery__current-image').attr('src',image)
+  $container.find('.image-index').html(nextIndex + 1)
+})
