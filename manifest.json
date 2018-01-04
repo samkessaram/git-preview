@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "GitPreview",
   "author": "Sam Kessaram",
-  "version": "0.1",
+  "version": "0.1.2",
   "description": "Preview issue images on GitHub. https://github.com/samkessaram/git-preview",
   "background": {
     "scripts": ["background.js"],
